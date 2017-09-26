@@ -8,7 +8,7 @@ return [
     /*
      * Api key
      */
-    'api_key' => '',
+    'api_key' => '751d64787f2fe19f06137ec8b9efface',
 
     /**
      * Client options
