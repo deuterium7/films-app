@@ -181,6 +181,7 @@ return [
          * My providers
          */
         Recca0120\LaravelTracy\LaravelTracyServiceProvider::class,
+        Tmdb\Laravel\TmdbServiceProvider::class,
 
     ],
 
