@@ -177,6 +177,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * My providers
+         */
+        Recca0120\LaravelTracy\LaravelTracyServiceProvider::class,
+
     ],
 
     /*
