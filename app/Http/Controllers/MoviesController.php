@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: АЛЕКС
- * Date: 26.09.2017
- * Time: 20:23
- */
 
 namespace App\Http\Controllers;
 
@@ -12,7 +6,7 @@ use Tmdb\Laravel\Facades\Tmdb;
 use Tmdb\Repository\MovieRepository;
 use Tmdb\Helper\ImageHelper;
 
-class WelcomeController
+class MoviesController
 {
     private $movies;
     private $helper;
