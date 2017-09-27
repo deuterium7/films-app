@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Tmdb\Repository\MovieRepository;
 use Tmdb\Helper\ImageHelper;
+use App\Models\Comments;
+use App\Models\User;
 
 class MoviesController
 {
@@ -46,6 +48,18 @@ class MoviesController
     function show($id)
     {
         $movie = $this->movies->load($id);
-        return view('movies.show', ['movie' => $movie]);
+        $comments = Comments::all()->where('theme_id', $id);
+
+        foreach ($comments as $comment)
+        {
+            $users = User::all()->where('id', $comment->user_id);
+        }
+
+        foreach ($users as $user)
+        {
+            $userNames[] = $user->name;
+        }
+
+        return view('movies.show', ['movie' => $movie, 'comments' => $comments, 'userNames' => $userNames]);
     }
 }

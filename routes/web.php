@@ -12,4 +12,8 @@
 */
 
 Route::get('/', 'MoviesController@index');
-Route::get('/movie/{id}', 'MoviesController@show')->name('movie');
+Route::get('/movie/{id}', 'MoviesController@show')->name('movie')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
