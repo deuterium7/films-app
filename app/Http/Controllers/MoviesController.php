@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Tmdb\Laravel\Facades\Tmdb;
 use Tmdb\Repository\MovieRepository;
 use Tmdb\Helper\ImageHelper;
 
@@ -46,6 +45,7 @@ class MoviesController
      */
     function show($id)
     {
-        return Tmdb::getMoviesApi()->getMovie($id);
+        $movie = $this->movies->load($id);
+        return view('movies.show', ['movie' => $movie]);
     }
 }
