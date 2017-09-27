@@ -30,15 +30,27 @@
             <div style="margin-top: 20px;">
                 <h4>Comments</h4>
                 <div style="background-color: #c9e2b3; padding: 4px 16px;">
-                    <?php $i = 0; ?>
                     @foreach($comments as $comment)
-                        <h5>#{{ $i + 1 }}</h5>
-                        <h5>От: {{ $userNames[$i] }}</h5>
+                        <h5>От: {{ $comment->user_id }}</h5>
                         <p>{{ $comment->body }}</p>
-                        <?php $i++; ?>
+                        <hr>
                     @endforeach
                 </div>
             </div>
         @endif
+        <div style="margin-top: 20px;">
+            <h4 style="text-align: center;">Add comment</h4>
+            {!! Form::open(['route' => 'comment-add']) !!}
+            {!! Form::hidden('theme_id', $movie->getId()) !!}
+            {!! Form::hidden('user_id', $authUserId) !!}
+            <div class="form-group">
+                {!! Form::label('body') !!}
+                {!! Form::textarea('body', null, ['class'=>'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::submit('Add', ['class'=>'btn btn-primary']) !!}
+            </div>
+            {!! Form::close() !!}
+        </div>
     </div>
 @stop

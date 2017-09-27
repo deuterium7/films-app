@@ -13,6 +13,9 @@
 
 Route::get('/', 'MoviesController@index');
 Route::get('/movie/{id}', 'MoviesController@show')->name('movie')->middleware('auth');
+Route::get('/search', 'MoviesController@search')->name('search');
+Route::post('/comment-add', 'MoviesController@storeComment')->name('comment-add');
+Route::post('/search-films', 'MoviesController@searchFilms')->name('search-films');
 
 Auth::routes();
 
