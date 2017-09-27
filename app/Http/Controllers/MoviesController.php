@@ -28,13 +28,14 @@ class MoviesController
 
         foreach ($popular as $movie)
         {
+            $movies['id'][] = $movie->getId();
             $movies['title'][] = $movie->getTitle();
 
             $image = $movie->getPosterImage();
             $movies['image'][] = $this->helper->getHtml($image, 'w154', 200, 300);
         }
 
-        return view('welcome', ['movies' => $movies]);
+        return view('movies.index', ['movies' => $movies]);
     }
 
     /**

@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'MoviesController@index');
+Route::get('/movie/{id}', 'MoviesController@show')->name('movie');
