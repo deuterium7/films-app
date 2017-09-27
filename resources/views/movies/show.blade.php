@@ -31,7 +31,7 @@
                 <h4>Comments</h4>
                 <div style="background-color: #c9e2b3; padding: 4px 16px;">
                     @foreach($comments as $comment)
-                        <h5>От: {{ $comment->user_id }}</h5>
+                        <h5>От: {{ $comment->user->name }}</h5>
                         <p>{{ $comment->body }}</p>
                         <hr>
                     @endforeach
@@ -40,8 +40,8 @@
         @endif
         <div style="margin-top: 20px;">
             <h4 style="text-align: center;">Add comment</h4>
-            {!! Form::open(['route' => 'comment-add']) !!}
-            {!! Form::hidden('theme_id', $movie->getId()) !!}
+            {!! Form::open(['route' => 'comment']) !!}
+            {!! Form::hidden('movie_id', $movie->getId()) !!}
             {!! Form::hidden('user_id', $authUserId) !!}
             <div class="form-group">
                 {!! Form::label('body') !!}

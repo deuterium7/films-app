@@ -8,10 +8,9 @@ use Tmdb\Model\Search\SearchQuery\MovieSearchQuery;
 use Tmdb\Repository\MovieRepository;
 use Tmdb\Helper\ImageHelper;
 use Tmdb\Repository\SearchRepository;
-use App\Models\Comments;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class MoviesController
 {
@@ -56,28 +55,11 @@ class MoviesController
     function show($id)
     {
         $movie = $this->movies->load($id);
-        $comments = Comments::all()->where('theme_id', $id);
+        $comments = Comment::with('user')->where('movie_id', $id)->get();
 
         $authUserId = Auth::id();
 
-        return view('movies.show', ['movie' => $movie, 'comments' => $comments, 'authUserId' => $authUserId]);
-    }
-
-    /**
-     * Добавить в тему комментарий
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function storeComment(Request $request)
-    {
-        DB::table('comments')->insert([
-            'user_id' => $request->user_id,
-            'theme_id' => $request->theme_id,
-            'body' => $request->body,
-        ]);
-
-        return redirect()->back();
+        return view('movies.show', compact('movie', 'comments', 'authUserId'));
     }
 
     /**
@@ -90,6 +72,12 @@ class MoviesController
         return view('movies.search');
     }
 
+    /**
+     * Найти фильмы по запросу
+     *
+     * @param Request $request
+     * @return Response
+     */
     public function searchFilms(Request $request)
     {
         $query = urlencode($request->search);

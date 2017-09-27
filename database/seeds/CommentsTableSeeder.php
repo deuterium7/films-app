@@ -13,7 +13,7 @@ class CommentsTableSeeder extends Seeder
     {
         DB::table('comments')->insert([
             'user_id' => 1,
-            'theme_id' => 346364,
+            'movie_id' => 346364,
             'body' => 'some comment',
         ]);
     }

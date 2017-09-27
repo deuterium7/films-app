@@ -32,8 +32,8 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function comments()
+    public function comment()
     {
-        return $this->hasMany('App\Models\Comments');
+        return $this->hasMany(Comment::class);
     }
 }
